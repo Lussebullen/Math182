@@ -8,6 +8,8 @@ input = sys.stdin.readline
 
 def find_max(A, n):
     if n == 0:
+        # Avoids 0 being the max for empty lists, as this would dominate negative
+        # results in the max(...) function in the return statement.
         return -sys.maxsize
     if n == 1:
         return A[0]
@@ -44,7 +46,7 @@ for _ in range(int(input())):
     A = [int(i) for i in input().split()]
     print(find_max(A, n))
 
-# To run this code, type `python3 max_subarray.py < input.txt > output.txt` into the command line.
+# To run this code, type `python3 MaxSubarray.py < input.txt > output.txt` into the command line.
 # To run it with small test cases that you type in by hand, simply run `python3 max_subarray.py`
 # from the command line.
 # Note that this code is written assuming you are using python 3. It may not work in python 2.
