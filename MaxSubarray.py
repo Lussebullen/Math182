@@ -8,7 +8,7 @@ input = sys.stdin.readline
 
 def find_max(A, n):
     if n == 0:
-        return 0
+        return -sys.maxsize
     if n == 1:
         return A[0]
     mid = math.floor(n/2)
