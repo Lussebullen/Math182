@@ -6,7 +6,14 @@ input = sys.stdin.readline
 # also fixed what I assume was a typo in line 16, A[mid-1]
 # rather than just adding the index.
 
-def find_max(A, n):
+# Ensures 0 is returned for empty initial array, else call the recursive method.
+def find_max(A,n):
+    if len(A)==0:
+        return 0
+    else:
+        return maxSubArray(A,n)
+
+def maxSubArray(A, n):
     if n == 0:
         # Avoids 0 being the max for empty lists, as this would dominate negative
         # results in the max(...) function in the return statement.
@@ -16,7 +23,7 @@ def find_max(A, n):
     mid = math.floor(n/2)
     B = A[0:mid-1]
     C = A[mid:n]
-    return max(find_max(B,len(B)),find_max(C,len(C)),
+    return max(maxSubArray(B,len(B)),maxSubArray(C,len(C)),
                MaxLeft(A,mid) + MaxRight(A,mid) + A[mid-1])
 
 def MaxLeft(A,mid):
@@ -45,6 +52,7 @@ for _ in range(int(input())):
     n = int(input())
     A = [int(i) for i in input().split()]
     print(find_max(A, n))
+
 
 # To run this code, type `python3 MaxSubarray.py < input.txt > output.txt` into the command line.
 # To run it with small test cases that you type in by hand, simply run `python3 max_subarray.py`
