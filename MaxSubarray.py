@@ -17,7 +17,10 @@ def maxSubArray(A, n):
     if n == 0:
         # Avoids 0 being the max for empty lists, as this would dominate negative
         # results in the max(...) function in the return statement.
-        return -sys.maxsize
+        #return -sys.maxsize
+
+        #Since seemingly 0 is desired I use base case =0
+        return 0
     if n == 1:
         return A[0]
     mid = math.floor(n/2)
