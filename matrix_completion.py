@@ -15,14 +15,19 @@ def complete_matrix(n, R, C, M):
         heappush(Q,(-C[_],_))
 
     for _ in range(n):
-       for k in range(R[_]):
+        repush = []
+        for k in range(R[_]):
             prio = heappop(Q)
             M[_][prio[1]] = 1
-            heappush(Q, (prio[0] + 1, prio[1]))
+            #Save entries popped with decremented value
+            repush = repush + [(prio[0] + 1, prio[1])]
+        #Push decremented values
+        for i in repush:
+            heappush(Q,i)
 
     #Check solution
-    rsum = [sum(M[:][i]) for i in range(n)]
-    csum = [sum(M[i][:]) for i in range(n)]
+    rsum = [sum(row) for row in M]
+    csum = [sum(row[i] for row in M) for i in range(n)]
     if rsum==R and csum==C:
         return True
     else:
