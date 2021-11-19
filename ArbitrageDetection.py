@@ -5,7 +5,7 @@ import math
 def read_graph(n, k):
     edges = []
     for _ in range(k):
-        i, j, r = f.readline().split()
+        i, j, r = input().split()
         edges.append((int(i), int(j), float(r)))
     return edges
 
@@ -34,8 +34,8 @@ def bellman_ford_mod2(n, k, edges):     #Same as above, but logarithmic to avoid
     :param source: Starting vertex
     :return: Is negative cycle reachable from source
     """
-    dist = [0] * n
-    for i in range(n-1):
+    dist = [0] * n          #All start at zero to imitate introduction of extra vertex with one way edge to all vertices
+    for i in range(n-1):    #with weight zero - i.e. so it will find negative cycles regardles of start vertex.
         for e in edges:
             dist[e[1] - 1] = min(dist[e[1] - 1], dist[e[0] - 1] + math.log10(e[2]))
     for e in edges:
